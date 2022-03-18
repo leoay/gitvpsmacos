@@ -11,23 +11,22 @@ if [[ -z "$USER_PASS" ]]; then
   exit 3
 fi
 
-echo "### Install ngrok ###"
+echo "### Install Frp ###"
 
-wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-darwin-amd64.zip
-unzip ngrok-stable-darwin-amd64.zip
-chmod +x ./ngrok
+wget https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_darwin_amd64.tar.gz
+tar xvf frp_0.40.0_darwin_amd64.tar.gz
 
-echo "### Update user: $USER password ###"
-echo -e "$USER_PASS\n$USER_PASS" | sudo passwd "$USER"
+echo [common] >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo server_addr = $1 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo server_port = 7000 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo "" >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo [web48080] >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo type = tcp >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo local_ip = 127.0.0.1 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo local_port = 22 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo remote_port = 48080 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 
-echo "### Start CodeServer proxy for 8080 port ###"
-
-rm -f .ngrok.log
-./ngrok authtoken "$NGROK_TOKEN"
-nohup ./ngrok tcp 8080 --log ".ngrok.log" &
-
-sleep 10
-HAS_ERRORS=$(grep "command failed" < .ngrok.log)
+nohup ./frp_0.40.0_darwin_amd64/frpc -c ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 
 mkdir -p ~/.config/code-server
 
