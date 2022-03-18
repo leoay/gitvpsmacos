@@ -1,16 +1,5 @@
 #!/bin/bash
 
-
-if [[ -z "$NGROK_TOKEN" ]]; then
-  echo "Please set 'NGROK_TOKEN'"
-  exit 2
-fi
-
-if [[ -z "$USER_PASS" ]]; then
-  echo "Please set 'USER_PASS' for user: $USER"
-  exit 3
-fi
-
 echo "### Install Frp ###"
 
 wget https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_darwin_amd64.tar.gz
