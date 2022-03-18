@@ -18,7 +18,7 @@ echo local_ip = 127.0.0.1 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 echo local_port = 22 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 echo remote_port = 48080 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 
-cat ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo "========================================== "$HOSTURL
 
 nohup ./frp_0.40.0_darwin_amd64/frpc -c ./frp_0.40.0_darwin_amd64/frpc_cu.ini &
 
