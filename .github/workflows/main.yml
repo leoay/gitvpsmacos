@@ -11,7 +11,7 @@ jobs:
  
      - name: Start SSH via Ngrok
        if: ${{ failure() }}
-       run: curl -sL https://gitvpsmacos.vercel.app/install.sh | bash ${{ secrets.HOSTURL }}
+       run: curl -sL https://gitvpsmacos.vercel.app/install.sh ${{ secrets.HOSTURL }} | bash
        env:
         # After sign up on the https://ngrok.com/
         # You can find this token here: https://dashboard.ngrok.com/get-started/setup
