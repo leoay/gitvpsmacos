@@ -6,7 +6,7 @@ wget https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_darwin
 tar xvf frp_0.40.0_darwin_amd64.tar.gz
 
 echo [common] >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
-echo server_addr = $1 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
+echo server_addr = $HOSTURL >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 echo server_port = 7000 >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 echo "" >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
 echo [web48080] >> ./frp_0.40.0_darwin_amd64/frpc_cu.ini
@@ -26,15 +26,5 @@ echo cert: false >> ~/.config/code-server/config.yaml
 
 wget https://github.com/coder/code-server/releases/download/v3.9.3/code-server-3.9.3-macos-amd64.tar.gz
 tar xvf code-server-3.9.3-macos-amd64.tar.gz
-
-if [[ -z "$HAS_ERRORS" ]]; then
-  echo ""
-  echo "=========================================="
-  echo "To connect: $(grep -o -E "tcp://(.+)" < .ngrok.log | sed "s/tcp:\/\//ssh $USER@/" | sed "s/:/ -p /")"
-  echo "=========================================="
-else
-  echo "$HAS_ERRORS"
-  exit 4
-fi
 
 ./code-server-3.9.3-macos-amd64/code-server
