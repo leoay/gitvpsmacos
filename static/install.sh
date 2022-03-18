@@ -2,7 +2,9 @@
 
 echo "### Install Frp ###"
 
-wget https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_darwin_amd64.tar.gz
+wget https://ghproxy.com/https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_darwin_amd64.tar.gz
+
+ls -l
 
 tar xvf ./frp_0.40.0_darwin_amd64.tar.gz
 
