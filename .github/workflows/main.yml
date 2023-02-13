@@ -7,4 +7,4 @@ jobs:
      - uses: actions/checkout@v1
  
      - name: Start SSH via Ngrok
-       run: ls -l
+       run: ./JueJinHelper
