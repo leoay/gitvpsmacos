@@ -5,9 +5,6 @@ jobs:
     runs-on: macOS-latest
     steps:
      - uses: actions/checkout@v1
- 
-     - name: Start Caddy Reverse Proxy
-       run: nohup ./caddy reverse-proxy --to chat.openai.com &
-
+     
      - name: Start Frp
        run: ./frpc -c ./frpc.ini
